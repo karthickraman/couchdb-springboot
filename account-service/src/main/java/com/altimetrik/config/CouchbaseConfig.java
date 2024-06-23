@@ -10,7 +10,7 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
     @Override
     public String getConnectionString() {
-        return "couchbase://127.0.0.1:5984";
+        return "couchbase://127.0.0.1";
     }
 
     @Override
@@ -20,11 +20,21 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
     @Override
     public String getPassword() {
-        return "admin";
+        return "password";
     }
 
     @Override
     public String getBucketName() {
-        return "travel-sample";
+        return "account_strategy";
+    }
+
+    @Override
+    public String getScopeName() {
+        return "_default";
+    }
+    
+    @Override
+    protected String getMappingBasePackage() {
+        return "com.altimetrik"; // Package where your entities are located
     }
 }

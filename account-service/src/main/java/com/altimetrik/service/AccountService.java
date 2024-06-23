@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -25,6 +26,16 @@ public class AccountService {
 
     public Account getAccountById(String id) {
         return accountRepository.findById(id).orElse(null);
+    }
+
+    public boolean deleteAccountById(String id) {
+        Optional<Account> account = accountRepository.findById(id);
+        if (account.isPresent()) {
+            accountRepository.delete(account.get());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public List<Account> getAllAccounts() {
