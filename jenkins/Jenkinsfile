@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh './mvnw clean install'
+            }
+        }
+        stage('Deploy to AWS') {
+            steps {
+                // Add AWS CLI commands for deployment here
+                sh 'aws cloudformation deploy --template-file aws/cloudformation-template.yaml --stack-name StrategicAccountManagement'
+            }
+        }
+    }
+}
